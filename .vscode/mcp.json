@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "thebreeth": {
+      "type": "http",
+      "url": "https://mcp.thebreeth.com/mcp"
+    }
+  }
+}

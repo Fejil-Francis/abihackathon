@@ -1,0 +1,107 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background: #07111f;
+  color: #f7f6ff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: linear-gradient(180deg, #07111f 0%, #140c33 100%); min-height: 100vh; }
+a { text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+#root { min-height: 100vh; }
+
+.app-shell {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 18px;
+}
+
+.page { display: flex; flex-direction: column; gap: 14px; }
+
+.hero-card, .card, .trust-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.2);
+}
+
+.brand-row, .topbar, .card-header, .hero-actions, .topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.brand-badge, .pill, .chip, .streak-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(146, 97, 255, 0.22);
+  color: #e7d8ff;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+h1, h2, h3, p { margin: 0; }
+
+.hero-card h1 { font-size: 1.9rem; margin: 12px 0 8px; line-height: 1.1; }
+.hero-card p { color: #d7d6eb; }
+
+.hero-actions { margin-top: 16px; flex-wrap: wrap; }
+.primary-btn, .secondary-btn, .ghost-btn, .proof-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+}
+.primary-btn { background: linear-gradient(135deg, #7c4dff, #3d9cff); color: white; }
+.secondary-btn, .ghost-btn { background: rgba(255,255,255,0.12); color: #fff; }
+.primary-btn:hover, .secondary-btn:hover, .ghost-btn:hover, .proof-btn:hover { transform: translateY(-1px); }
+
+.block-btn { display: block; text-align: center; margin-top: 10px; }
+
+.info-grid, .card-stack { display: flex; flex-direction: column; gap: 12px; }
+.info-card { background: rgba(255,255,255,0.07); border-radius: 18px; padding: 14px; }
+.info-card h3 { margin-bottom: 6px; }
+
+.trust-card ul { padding-left: 18px; color: #d7d6eb; }
+.trust-card li + li { margin-top: 7px; }
+
+.eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.24em; color: #8cb8ff; font-weight: 700; }
+
+.dashboard-hero .streak-pill { margin-bottom: 8px; }
+.card-header { margin-bottom: 10px; }
+.progress-bar { width: 100%; height: 10px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; margin: 10px 0 6px; }
+.progress-bar > div { height: 100%; background: linear-gradient(90deg, #70f0ff, #7c4dff); border-radius: inherit; }
+.subtle { color: #a9a7c1; font-size: 0.92rem; }
+.mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+.mini-grid > div { background: rgba(255,255,255,0.08); border-radius: 14px; padding: 10px; }
+
+.recovery-card { background: linear-gradient(135deg, rgba(124,77,255,0.2), rgba(61,156,255,0.18)); }
+
+.bullet-list { display: flex; flex-direction: column; gap: 8px; padding-left: 16px; color: #e9e8f8; }
+
+.proof-btn {
+  width: 100%; text-align: left; background: rgba(255,255,255,0.1); color: white; margin-bottom: 8px;
+}
+.proof-btn.done { background: rgba(80, 214, 154, 0.24); color: #bff7d2; }
+.proof-status { margin-top: 8px; color: #d7d6eb; }
+
+@media (min-width: 768px) {
+  .app-shell { max-width: 960px; padding: 30px; }
+  .info-grid { grid-template-columns: repeat(3, 1fr); display: grid; }
+  .card-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
