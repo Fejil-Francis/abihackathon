@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import AppHeader from '../components/AppHeader';
 import BottomNav from '../components/BottomNav';
 import ProofCard from '../components/ProofCard';
+import EmptyState from '../components/EmptyState';
 import { getChallengeByDay } from '../data/mockChallenges';
 import { proofInitialState } from '../data/mockAchievements';
 
@@ -20,10 +21,14 @@ export default function ChallengeDayPage() {
   });
 
   useEffect(() => {
-    window.localStorage.setItem('abtalks-proof', JSON.stringify(proof));
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('abtalks-proof', JSON.stringify(proof));
+    }
   }, [proof]);
 
   const complete = proof.github.submitted && proof.linkedin.submitted;
+  const missingGithub = !proof.github.submitted;
+  const missingLinkedin = !proof.linkedin.submitted;
 
   return (
     <div className="page day-page">
@@ -94,6 +99,20 @@ export default function ChallengeDayPage() {
         verified={proof.linkedin.submitted}
         accentClass="linkedin-card"
       />
+
+      {missingGithub ? (
+        <EmptyState
+          title="GitHub proof missing"
+          message="Submit your repository or today's commit to keep your progress verified."
+        />
+      ) : null}
+
+      {missingLinkedin ? (
+        <EmptyState
+          title="LinkedIn proof missing"
+          message="Share today's progress so your learning journey stays visible."
+        />
+      ) : null}
 
       <section className="card completion-card">
         <div className="card-header">

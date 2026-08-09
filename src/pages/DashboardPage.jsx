@@ -4,6 +4,7 @@ import BottomNav from '../components/BottomNav';
 import ProgressBar from '../components/ProgressBar';
 import CommitmentCard from '../components/CommitmentCard';
 import DayGrid from '../components/DayGrid';
+import EmptyState from '../components/EmptyState';
 import { studentProfile } from '../data/mockStudent';
 import { challenges } from '../data/mockChallenges';
 import { achievements } from '../data/mockAchievements';
@@ -12,10 +13,21 @@ export default function DashboardPage() {
   const profile = studentProfile;
   const currentTask = challenges.find((item) => item.day === profile.currentDay) ?? challenges[11];
   const progressPercent = Math.round(profile.completionPercentage);
+  const isFirstDay = profile.currentDay === 1 && profile.currentStreak === 0 && profile.completedDays === 0;
+  const isMissedDay = profile.missedDay;
+  const hasProfile = Boolean(profile.name?.trim()) && Boolean(profile.track?.trim());
 
   return (
     <div className="page dashboard-page">
       <AppHeader />
+
+      {!hasProfile ? (
+        <EmptyState
+          title="Your profile is almost ready."
+          message="Add your name and track to personalize your challenge."
+          action={<Link to="/day/12" className="secondary-btn">Complete profile</Link>}
+        />
+      ) : null}
 
       <section className="hero-card dashboard-hero">
         <div className="avatar-row">
@@ -28,8 +40,22 @@ export default function DashboardPage() {
         <div className="streak-banner">
           <span className="streak-icon">🔥</span>
           <div>
-            <strong>{profile.currentStreak} day streak</strong>
-            <p>Your longest: {profile.longestStreak} days</p>
+            {isFirstDay ? (
+              <>
+                <strong>Your streak starts tonight.</strong>
+                <p>You do not have a streak yet. You have Day 1.</p>
+              </>
+            ) : isMissedDay ? (
+              <>
+                <strong>Yesterday was missed.</strong>
+                <p>Your previous streak: {profile.previousStreak} days. Restart tonight.</p>
+              </>
+            ) : (
+              <>
+                <strong>{profile.currentStreak} day streak</strong>
+                <p>Your longest: {profile.longestStreak} days</p>
+              </>
+            )}
           </div>
         </div>
       </section>
